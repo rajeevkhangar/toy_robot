@@ -63,9 +63,13 @@ module ToyRobot
     def next_move
       case @direction
       when "NORTH"
-        then [@east, @north + 1]
+        [@east, @north + 1]
       when "SOUTH"
-        then [@east, @north - 1]
+        [@east, @north - 1]
+      when "EAST"
+        [@east + 1, @north]
+      when "WEST"
+        [@east -1, @north]
       end
     end
 
