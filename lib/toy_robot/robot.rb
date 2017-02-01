@@ -34,32 +34,6 @@ module ToyRobot
       send("move_#{@direction.downcase}")
     end
 
-    def turn_left
-      turn(:left)
-    end
-
-    def turn_right
-      turn(:right)
-    end
-
-    private
-
-    def turn(turn_direction)
-      index = DIRECTIONS.index(@direction)
-      rotations = turn_direction == :right ? 1 : -1
-      @direction = DIRECTIONS.rotate(rotations)[index]
-    end
-
-    public
-
-    def report
-      {
-        north: @north,
-        east: @east,
-        direction: @direction
-      }
-    end
-
     def next_move
       case @direction
       when "NORTH"
@@ -69,8 +43,33 @@ module ToyRobot
       when "EAST"
         [@east + 1, @north]
       when "WEST"
-        [@east -1, @north]
+        [@east - 1, @north]
       end
+    end
+
+
+    def turn_left
+      turn(:left)
+    end
+
+    def turn_right
+      turn(:right)
+    end
+
+    def report
+      {
+        north: @north,
+        east: @east,
+        direction: @direction
+      }
+    end
+
+    private
+
+    def turn(turn_direction)
+      index = DIRECTIONS.index(@direction)
+      rotations = turn_direction == :right ? 1 : -1
+      @direction = DIRECTIONS.rotate(rotations)[index]
     end
 
   end
